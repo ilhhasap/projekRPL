@@ -21,6 +21,6 @@ class Barang extends CI_Controller {
 		$this->Barang_model->simpanBarang();
 		$this->session->set_flashdata('message', ' ditambahkan!');
 
-		redirect('Barang/index');
+		redirect(base_url('Barang'));
 }
 }

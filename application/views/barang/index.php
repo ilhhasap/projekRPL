@@ -24,7 +24,7 @@
                         <a class="nav-link" href="<?= base_url()?>">Tambah data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url()?>barang">Lihat Data Barang</a>
+                        <a class="nav-link active fw-bold" href="<?= base_url()?>barang">Lihat Data Barang</a>
                     </li>
                 </ul>
             </div>
@@ -61,9 +61,9 @@
                 <tr>
                     <td><?= $barang['kodeBarang']?></td>
                     <td><?= $barang['namaBarang']?></td>
-                    <td><?= $barang['hargaSatuan']?></td>
+                    <td>Rp <?= number_format($barang['hargaSatuan'])?></td>
                     <td><?= $barang['jumlahBeli']?></td>
-                    <td><?= $barang['totalBayar']?></td>
+                    <td>Rp <?= number_format($barang['totalBayar'])?></td>
                 </tr>
                 <?php endforeach;?>
                 <?php } else { ?>
