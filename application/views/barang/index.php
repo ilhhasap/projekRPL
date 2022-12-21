@@ -51,6 +51,7 @@
                     <th scope="col">Harga Satuan</th>
                     <th scope="col">Jumlah beli</th>
                     <th scope="col">Total Bayar</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,12 +59,14 @@
                 if ( !empty($showAllBarang) ) {
                     foreach($showAllBarang as $barang) :
                  ?>
-                <tr>
+                <tr class="align-middle">
                     <td><?= $barang['kodeBarang']?></td>
                     <td><?= $barang['namaBarang']?></td>
                     <td>Rp <?= number_format($barang['hargaSatuan'])?></td>
                     <td><?= $barang['jumlahBeli']?></td>
                     <td>Rp <?= number_format($barang['totalBayar'])?></td>
+                    <td><a href="<?= base_url()?>Barang/hapusBarang/<?= $barang['kodeBarang'];?>" type="button"
+                            class="btn btn-danger">Hapus</a></td>
                 </tr>
                 <?php endforeach;?>
                 <?php } else { ?>

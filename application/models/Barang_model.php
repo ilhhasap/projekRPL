@@ -19,4 +19,10 @@ class Barang_model extends CI_model {
 
         $this->db->insert('barang',$data);
     }
+
+    public function hapusBarang($kodeBarang)
+    {
+        $this->db->where('kodeBarang',$kodeBarang);
+        $this->db->delete('barang',['kodeBarang' => $kodeBarang]);
+    }
 }

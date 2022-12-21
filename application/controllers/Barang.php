@@ -22,5 +22,12 @@ class Barang extends CI_Controller {
 		$this->session->set_flashdata('message', ' ditambahkan!');
 
 		redirect(base_url('Barang'));
-}
+	}
+	public function hapusBarang($kodeBarang)
+	{
+		$this->Barang_model->hapusBarang($kodeBarang);
+		$this->session->set_flashdata('message', ' dihapus!');
+
+		redirect(base_url('Barang'));
+	}
 }

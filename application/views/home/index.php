@@ -82,8 +82,6 @@ $(document).ready(function() {
         var total = hargaSatuan * jumlahBeli;
         $("#totalBayar").val(total);
     });
-
-
 });
 </script>
 
