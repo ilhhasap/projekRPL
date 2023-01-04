@@ -6,14 +6,15 @@
                     <img src="./assets/img/global/burger.svg" class="mb-2" alt="">
                 </button>
                 <div class="d-flex flex-column">
-                    <h2 class="">Master User</h2>
-                    <p class="mb-0">16 users</p>
+                    <h2 class=""><?= $judul?></h2>
+                    <p class="mb-0"><?= $showCountMall?> malls</p>
                 </div>
             </div>
         </div>
 
         <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-primary fw-bold">Tambah Data</button>
+            <button data-bs-toggle="modal" data-bs-target="#tambahData" type="button"
+                class="btn btn-primary fw-bold">Tambah Data</button>
         </div>
     </div>
 
@@ -47,9 +48,10 @@
                                         class="badge rounded-pill bg-<?= ($mall['active'] == 1) ? "success" : "danger";?>"><?= ($mall['active'] == 1) ? "Yes" : "No";?></span>
                                 </td>
                                 <td class="py-3">
-                                    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">Edit</button>
-                                    <button type="button" class="btn btn-outline-danger hapus">Hapus</button>
+                                    <button data-bs-toggle="modal" data-bs-target="#editData<?= $mall['idMall']?>"
+                                        type="button" class="btn btn-primary me-2">Edit</button>
+                                    <a href="<?= base_url()?>admin/deleteMall/<?= $mall['idMall']?>" type="button"
+                                        class="btn btn-outline-danger hapus">Hapus</a>
                                 </td>
                             </tr>
                             <?php endforeach;?>
@@ -66,34 +68,82 @@
 </div>
 
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Tambah -->
+<div class="modal fade modal-add" data-bs-backdrop="static" data-bs-keyboard="false" id="tambahData" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+        <div class=" modal-content">
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="namaUser" class="form-label">Nama User</label>
-                        <input type="text" class="form-control">
+                <form action="<?= base_url()?>admin/addMall" method="post">
+                    <input type="hidden" name="active" value="1">
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall">
                     </div>
-                    <div class="mb-3">
-                        <label for="emailUser" class="form-label">Email User</label>
-                        <input type="text" class="form-control">
+                    <div class="col-12">
+                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
                     </div>
-                    <div class="d-grid gap-2 mt-4">
-                        <button class="btn btn-success" type="button">Simpan</button>
-                        <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                    </div>
+                    <!-- <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Active</label>
+                        <select class="form-select" name="active">
+                            <option selected disabled>-- Pilih --</option>
+                            <option value="0">Tidak</option>
+                            <option value="1">Aktif</option>
+                        </select>
+                    </div> -->
             </div>
-            <!-- <div class="modal-footer">
-            </div> -->
+            <div class="d-grid p-3">
+                <button type="submit" class="btn btn-save btn-transparent mb-2"
+                    style="background-color: #6271EB;color: white;">Tambah Mall</button>
+                <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
+                    style="background-color: #eeeeee;color: grey;">Cancel</button>
+            </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<!-- Modal Edit -->
+<?php foreach($showAllMall as $mall) : ?>
+<div class="modal fade modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" id="editData<?= $mall['idMall']?>"
+    tabindex="-1">
+    <div class="modal-dialog">
+        <div class=" modal-content">
+            <div class="modal-body">
+                <form action="<?= base_url()?>admin/editMall" method="post">
+                    <input type="hidden" name="idMall" value="<?= $mall['idMall']?>">
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall"
+                            value="<?= $mall['namaMall']?>">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
+                            value="<?= $mall['alamatMall']?>">
+                    </div>
+                    <div class="col-12">
+                        <label for="exampleInputPassword1" class="form-label">Active</label>
+                        <select class="form-select" name="active">
+                            <?php if($mall['active'] == 0) { ?>
+                            <option value="<?= $mall['active']?>" selected>Tidak Aktif</option>
+                            <option value="1"> Aktif</option>
+                            <?php } else if($mall['active'] == 1) { ?>
+                            <option value="<?= $mall['active']?>">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                            <?php } ?>
+                        </select>
+                    </div>
+            </div>
+            <div class="d-grid p-3">
+                <button type="submit" class="btn btn-save btn-transparent mb-2"
+                    style="background-color: #6271EB;color: white;">Edit Mall</button>
+                <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
+                    style="background-color: #eeeeee;color: grey;">Cancel</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>

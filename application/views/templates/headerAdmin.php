@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="<?= base_url()?>/assets/css/index.css">
+    <link rel="stylesheet" href="<?= base_url()?>assets/css/index.css">
 
     <title><?= $judul?></title>
 </head>
@@ -26,7 +26,7 @@
                 <a href="#" class="sidebar-logo mb-5">
                     <div class="d-flex justify-content-start align-items-center">
                         <img src="<?= base_url()?>/assets/img/global/logo.svg" alt="">
-                        <span>Administrator</span>
+                        <span><?= $this->session->userdata('namaUser'); ?></span>
                     </div>
 
                     <button id="toggle-navbar" onclick="toggleNavbar()">
@@ -110,7 +110,7 @@
                     <span>Brands</span>
                 </a>
 
-                <a href="#" class="sidebar-item mt-auto" onclick="toggleActive(this)">
+                <a href="<?= base_url()?>auth/logout" class="sidebar-item mt-auto" onclick="toggleActive(this)">
                     <!-- <img src="./assets/img/global/log-out.svg" alt=""> -->
 
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
