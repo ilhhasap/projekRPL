@@ -16,7 +16,8 @@ class Home extends CI_Controller {
         $data['judul'] = "Tampilan Home";
         $data['active'] = "home";
 		
-		$data['namaUser '] = $this->session->userdata('namaUser');
+		$data['role'] = $this->session->userdata('role');
+		$data['namaUser'] = $this->session->userdata('namaUser');
 		$data['showAllMall'] = $this->Mall_model->showAllMall();
 		$this->load->view('templates/header', $data);
 		$this->load->view('home/index', $data);

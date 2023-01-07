@@ -18,6 +18,10 @@
 
 
     <style>
+    body {
+        overflow-x: hidden;
+    }
+
     .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -56,6 +60,27 @@
                         href="<?= base_url()?>wishlist">Wishlist</a>
                 </div>
             </div>
-            <a href="<?= base_url()?>auth" class="btn btn-outline-success" type="submit">Login</a>
+            <?php if(!$this->session->userdata('status')) : ?>
+            <a href="<?= base_url()?>auth" class="btn btn-success" type="submit">Login</a>
+            <?php else : ?>
+            <div class="dropdown align-items-center text-center">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <span class="fw-bold"><?= $this->session->userdata('namaUser')?></span>
+                </a>
+                <ul class="dropdown-menu text-small mt-2" aria-labelledby="dropdownUser1">
+                    <?php if($this->session->userdata('role') == 'admin') : ?>
+                    <li><a class="dropdown-item" href="<?= base_url()?>admin">Admin Dashboard</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <?php endif; ?>
+                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                    <li><a class="dropdown-item" href="<?= base_url()?>auth/logout">Sign out</a></li>
+                </ul>
+            </div>
+            <?php endif; ?>
         </div>
     </nav>

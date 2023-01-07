@@ -5,8 +5,8 @@ class Admin extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-		if($this->session->userdata('status') != "login"){
-			redirect(base_url("Auth"));
+		if($this->session->userdata('status') != "login" || $this->session->userdata('role') != "admin"){
+			redirect(base_url());
 		}
 		$this->load->helper(array('form', 'url'));
         $this->load->model("User_model");
@@ -81,13 +81,12 @@ class Admin extends CI_Controller {
 
 		} else {
 			$config['upload_path']		= './upload';
-			$config['allowed_types']	= 'gif|png|jpg';
+			$config['allowed_types']	= 'gif|png|jpg|jpeg';
 
 			$this->load->library('upload',$config);
 			if (!$this->upload->do_upload('thumbnail')) {
-				echo "gagal upload!"; die();
+				echo $this->upload->display_errors(); die();
 			} else {
-				$thumbnail = $this->upload->data('file_name');
 				$this->Mall_model->addMall();
 				$this->session->set_flashdata('success');
 			}
@@ -98,7 +97,24 @@ class Admin extends CI_Controller {
     
     public function editMall()
 	{
-		$this->Mall_model->editMall($this->input->post());
+		$thumbnail = $_FILES['thumbnail'];
+
+		if($thumbnail == "") {
+			$thumbnail = $this->input->post('currentThumbnail');
+			$this->Mall_model->editMall($this->input->post(), $thumbnail);
+		} else {
+			$config['upload_path']		= './upload';
+			$config['allowed_types']	= 'gif|png|jpg|jpeg';
+
+			$this->load->library('upload',$config);
+			if (!$this->upload->do_upload('thumbnail')) {
+				echo $this->upload->display_errors(); die();
+			} else {
+				$thumbnail = $this->upload->data('file_name');
+				$this->Mall_model->editMall($this->input->post(), $thumbnail);
+				$this->session->set_flashdata('success');
+			}
+		}
 		$this->session->set_flashdata('success');
 
 		redirect(base_url('admin/masterMall'));

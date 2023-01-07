@@ -6,12 +6,16 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
         $this->load->database();
         $this->load->model("User_model");
         $this->load->library('form_validation');
     }
     public function index()
     {
+        if($this->session->userdata('status') == "login"){
+            redirect(base_url());
+		}
         $data['judul'] = "Login Pengguna";
         $this->load->view('templates/headerAuth', $data);
         $this->load->view('auth/index', $data);
@@ -20,6 +24,9 @@ class Auth extends CI_Controller
 
     public function register()
     {
+        if($this->session->userdata('status') == "login"){
+			redirect(base_url('Home'));
+		}
         $data['judul'] = "Register Pengguna";
         $this->load->view('templates/headerAuth', $data);
         $this->load->view('auth/register', $data);
@@ -81,7 +88,7 @@ public function logout()
 {
 $this->session->sess_destroy();
 $this->session->set_flashdata('message', '<div class="alert alert-dismissible fade show" style="background-color: #badbcc" role="alert"><strong>Anda berhasil Logout!</strong>');
-redirect(base_url('Auth'));
+redirect(base_url('Home'));
 }
 
 

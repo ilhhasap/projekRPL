@@ -26,12 +26,15 @@ class Mall_model extends CI_model {
 	}
         
 
-    public function editMall($data)
+    public function editMall($data, $thumbnail)
     {
         $datas = [
             "idMall" => $data['idMall'],
+            "thumbnail" => $thumbnail,
             "namaMall" => $data['namaMall'],
             "alamatMall" => $data['alamatMall'],
+            "jamBukaMall" => $data['jamBukaMall'],
+            "jamTutupMall" => $data['jamTutupMall'],
             "active" => $data['active'],
         ];
         

@@ -19,14 +19,10 @@
                 <?php foreach($showAllMall as $mall) :?>
                 <div class="col">
                     <div class="card">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="200"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6"
-                                dy=".3em">Image cap</text>
-                        </svg>
-
+                        <div class="card-img-top">
+                            <img class="document-icon" src="<?= base_url()?>upload/<?= $mall['thumbnail']?>" alt=""
+                                width="64">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title"><?= $mall['namaMall']?></h5>
                             <p class="card-text">This card has supporting text below as a natural lead-in to

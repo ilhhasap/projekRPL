@@ -36,11 +36,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($showAllMall as $mall) : ?>
+                            <?php $i = 1; foreach ($showAllMall as $mall) : ?>
                             <tr>
-                                <th scope="row" class="py-3 text-center"><?= $mall['idMall']?></th>
+                                <th scope="row" class="py-3 text-center"><?= $i++;?></th>
                                 <td class="py-3"><img class="document-icon"
-                                        src="<?= base_url()?>assets/img/home/history/photo-2.png" alt="" width="64">
+                                        src="<?= base_url()?>upload/<?= $mall['thumbnail']?>" alt="" width="64">
                                 </td>
                                 <td class="py-3"><?= $mall['namaMall']?></td>
                                 <td class="py-3"><?= $mall['alamatMall']?></td>
@@ -82,11 +82,13 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
-                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall">
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall"
+                            autocomplete="off">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
-                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
+                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
+                            autocomplete="off">
                     </div>
                     <div class="row">
                         <div class="col-6">
@@ -98,6 +100,7 @@
                             <input type="time" class="form-control" name="jamTutupMall">
                         </div>
                     </div>
+
                     <!-- <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Active</label>
                         <select class="form-select" name="active">
@@ -128,15 +131,32 @@
             <div class="modal-body">
                 <form action="<?= base_url()?>admin/editMall" method="post">
                     <input type="hidden" name="idMall" value="<?= $mall['idMall']?>">
+                    <input type="hidden" name="currentThumbnail" value="<?= $mall['thumbnail']?>">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Edit Thumbnail</label>
+                        <input class="form-control" type="file" name="thumbnail">
+                    </div>
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
                         <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall"
-                            value="<?= $mall['namaMall']?>">
+                            value="<?= $mall['namaMall']?>" autocomplete="off">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
                         <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
-                            value="<?= $mall['alamatMall']?>">
+                            value="<?= $mall['alamatMall']?>" autocomplete="off">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Buka</label>
+                            <input type="time" class="form-control" name="jamBukaMall"
+                                value="<?= $mall['jamBukaMall']?>">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Tutup</label>
+                            <input type="time" class="form-control" name="jamTutupMall"
+                                value="<?= $mall['jamTutupMall']?>">
+                        </div>
                     </div>
                     <div class="col-12">
                         <label for="exampleInputPassword1" class="form-label">Active</label>
