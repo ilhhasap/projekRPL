@@ -40,7 +40,7 @@
                             <tr>
                                 <th scope="row" class="py-3 text-center"><?= $mall['idMall']?></th>
                                 <td class="py-3"><img class="document-icon"
-                                        src="<?= base_url()?>assets/img/home/history/photo-2.png" alt="" width="64">
+                                        src="<?= base_url()?>upload/<?= $mall['thumbnail']?>" alt="" width="64">
                                 </td>
                                 <td class="py-3"><?= $mall['namaMall']?></td>
                                 <td class="py-3"><?= $mall['alamatMall']?></td>

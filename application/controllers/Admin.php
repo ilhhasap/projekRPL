@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
 
 			$this->load->library('upload',$config);
 			if (!$this->upload->do_upload('thumbnail')) {
-				echo "gagal upload!"; die();
+				echo $this->upload->display_errors(); die();
 			} else {
 				$thumbnail = $this->upload->data('file_name');
 				$this->Mall_model->addMall();
