@@ -73,32 +73,32 @@
     <div class="modal-dialog">
         <div class=" modal-content">
             <div class="modal-body">
-                <!-- <form action="<?= base_url()?>admin/addMall" method="post" enctype="multipart/form-data"> -->
-                <?= form_open_multipart('admin/addMall'); ?>
-                <input type="hidden" name="active" value="1">
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Thumbnail</label>
-                    <input class="form-control" type="file" name="thumbnail">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
-                    <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
-                    <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="exampleInputPassword1" class="form-label">Jam Buka</label>
-                        <input type="time" class="form-control" name="jamBukaMall">
+                <form action="<?= base_url()?>admin/addMall" method="post" enctype="multipart/form-data">
+                    <!-- <?= form_open_multipart('admin/addMall'); ?> -->
+                    <input type="hidden" name="active" value="1">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Thumbnail</label>
+                        <input class="form-control" type="file" name="thumbnail">
                     </div>
-                    <div class="col-6">
-                        <label for="exampleInputPassword1" class="form-label">Jam Tutup</label>
-                        <input type="time" class="form-control" name="jamTutupMall">
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall">
                     </div>
-                </div>
-                <!-- <div class="col-12 mb-3">
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Buka</label>
+                            <input type="time" class="form-control" name="jamBukaMall">
+                        </div>
+                        <div class="col-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Tutup</label>
+                            <input type="time" class="form-control" name="jamTutupMall">
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Active</label>
                         <select class="form-select" name="active">
                             <option selected disabled>-- Pilih --</option>
@@ -113,7 +113,7 @@
                 <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
                     style="background-color: #eeeeee;color: grey;">Cancel</button>
             </div>
-            <?= form_close(); ?>
+            </form>
         </div>
     </div>
 </div>

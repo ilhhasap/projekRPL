@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Mall extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
@@ -13,13 +13,25 @@ class Home extends CI_Controller {
 	
 	public function index()
 	{
-        $data['judul'] = "Tampilan Home";
-        $data['active'] = "home";
+        $data['judul'] = "Malls";
+        $data['active'] = "mall";
 		
 		$data['namaUser '] = $this->session->userdata('namaUser');
 		$data['showAllMall'] = $this->Mall_model->showAllMall();
 		$this->load->view('templates/header', $data);
-		$this->load->view('home/index', $data);
+		$this->load->view('mall/index', $data);
+		$this->load->view('templates/footer', $data);
+	}
+	
+	public function detail($idMall)
+	{
+        $data['judul'] = "Malls";
+        $data['active'] = "mall";
+		
+		$data['namaUser '] = $this->session->userdata('namaUser');
+		$data['showAllMall'] = $this->Mall_model->showAllMall();
+		$this->load->view('templates/header', $data);
+		$this->load->view('mall/index', $data);
 		$this->load->view('templates/footer', $data);
 	}
 	
