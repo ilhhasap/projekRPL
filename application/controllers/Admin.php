@@ -8,8 +8,10 @@ class Admin extends CI_Controller {
 		if($this->session->userdata('status') != "login"){
 			redirect(base_url("Auth"));
 		}
+		$this->load->helper(array('form', 'url'));
         $this->load->model("User_model");
         $this->load->model("Mall_model");
+        $this->load->model("Brand_model");
     }
     
 	public function index()
@@ -73,8 +75,23 @@ class Admin extends CI_Controller {
 
 	public function addMall()
 	{
-		$this->Mall_model->addMall();
-		$this->session->set_flashdata('success');
+		$thumbnail = $_FILES['thumbnail'];
+
+		if($thumbnail == "") {
+
+		} else {
+			$config['upload_path']		= './upload';
+			$config['allowed_types']	= 'gif|png|jpg';
+
+			$this->load->library('upload',$config);
+			if (!$this->upload->do_upload('thumbnail')) {
+				echo "gagal upload!"; die();
+			} else {
+				$thumbnail = $this->upload->data('file_name');
+				$this->Mall_model->addMall();
+				$this->session->set_flashdata('success');
+			}
+		}
 
 		redirect(base_url('admin/masterMall'));
 	}
@@ -100,6 +117,9 @@ class Admin extends CI_Controller {
 	{
         $data['judul'] = "Master Brand";
         $data['active'] = "brand";
+		$data['showAllBrand'] = $this->Brand_model->showAllBrand();
+		$data['showCountBrand'] = $this->Brand_model->showCountBrand();
+
 		$this->load->view('templates/headerAdmin', $data);
 		$this->load->view('admin/brand', $data);
 		$this->load->view('templates/footerAdmin', $data);

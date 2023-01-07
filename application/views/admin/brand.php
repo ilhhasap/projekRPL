@@ -7,7 +7,7 @@
                 </button>
                 <div class="d-flex flex-column">
                     <h2 class=""><?= $judul?></h2>
-                    <p class="mb-0"><?= $showCountMall?> malls</p>
+                    <p class="mb-0"><?= $showCountBrand?> brands</p>
                 </div>
             </div>
         </div>
@@ -28,29 +28,23 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="py-4 text-center">No</th>
-                                <th scope="col" class="py-4">Thumbnail</th>
-                                <th scope="col" class="py-4">Nama Mall</th>
-                                <th scope="col" class="py-4">Alamat</th>
-                                <th scope="col" class="py-4">Active</th>
+                                <th scope="col" class="py-4">Logo</th>
+                                <th scope="col" class="py-4">Nama Brand</th>
                                 <th scope="col" class="py-4">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($showAllMall as $mall) : ?>
+                            <?php $i = 1; foreach ($showAllBrand as $brand) : ?>
                             <tr>
-                                <th scope="row" class="py-3 text-center"><?= $mall['idMall']?></th>
+                                <th scope="row" class="py-3 text-center"><?= $i++;?></th>
                                 <td class="py-3"><img class="document-icon"
                                         src="<?= base_url()?>assets/img/home/history/photo-2.png" alt="" width="64">
                                 </td>
-                                <td class="py-3"><?= $mall['namaMall']?></td>
-                                <td class="py-3"><?= $mall['alamatMall']?></td>
-                                <td class="py-3"><span
-                                        class="badge rounded-pill bg-<?= ($mall['active'] == 1) ? "success" : "danger";?>"><?= ($mall['active'] == 1) ? "Yes" : "No";?></span>
-                                </td>
+                                <td class="py-3"><?= $brand['namaBrand']?></td>
                                 <td class="py-3">
-                                    <button data-bs-toggle="modal" data-bs-target="#editData<?= $mall['idMall']?>"
+                                    <button data-bs-toggle="modal" data-bs-target="#editData<?= $brand['idBrand']?>"
                                         type="button" class="btn btn-primary me-2">Edit</button>
-                                    <a href="<?= base_url()?>admin/deleteMall/<?= $mall['idMall']?>" type="button"
+                                    <a href="<?= base_url()?>admin/deleteMall/<?= $brand['idBrand']?>" type="button"
                                         class="btn btn-outline-danger hapus">Hapus</a>
                                 </td>
                             </tr>
@@ -73,32 +67,17 @@
     <div class="modal-dialog">
         <div class=" modal-content">
             <div class="modal-body">
-                <!-- <form action="<?= base_url()?>admin/addMall" method="post" enctype="multipart/form-data"> -->
-                <?= form_open_multipart('admin/addMall'); ?>
-                <input type="hidden" name="active" value="1">
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Thumbnail</label>
-                    <input class="form-control" type="file" name="thumbnail">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
-                    <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall">
-                </div>
-                <div class="col-12 mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
-                    <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="exampleInputPassword1" class="form-label">Jam Buka</label>
-                        <input type="time" class="form-control" name="jamBukaMall">
+                <form action="<?= base_url()?>admin/addMall" method="post">
+                    <input type="hidden" name="active" value="1">
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nama Brand</label>
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaBrand">
                     </div>
-                    <div class="col-6">
-                        <label for="exampleInputPassword1" class="form-label">Jam Tutup</label>
-                        <input type="time" class="form-control" name="jamTutupMall">
+                    <div class="col-12">
+                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
+                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
                     </div>
-                </div>
-                <!-- <div class="col-12 mb-3">
+                    <!-- <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Active</label>
                         <select class="form-select" name="active">
                             <option selected disabled>-- Pilih --</option>
@@ -113,39 +92,39 @@
                 <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
                     style="background-color: #eeeeee;color: grey;">Cancel</button>
             </div>
-            <?= form_close(); ?>
+            </form>
         </div>
     </div>
 </div>
 
 
 <!-- Modal Edit -->
-<?php foreach($showAllMall as $mall) : ?>
-<div class="modal fade modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" id="editData<?= $mall['idMall']?>"
-    tabindex="-1">
+<?php foreach($showAllBrand as $brand) : ?>
+<div class="modal fade modal-edit" data-bs-backdrop="static" data-bs-keyboard="false"
+    id="editData<?= $brand['idBrand']?>" tabindex="-1">
     <div class="modal-dialog">
         <div class=" modal-content">
             <div class="modal-body">
                 <form action="<?= base_url()?>admin/editMall" method="post">
-                    <input type="hidden" name="idMall" value="<?= $mall['idMall']?>">
+                    <input type="hidden" name="idBrand" value="<?= $brand['idBrand']?>">
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
                         <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall"
-                            value="<?= $mall['namaMall']?>">
+                            value="<?= $brand['namaMall']?>">
                     </div>
                     <div class="col-12 mb-3">
                         <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
                         <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
-                            value="<?= $mall['alamatMall']?>">
+                            value="<?= $brand['alamatMall']?>">
                     </div>
                     <div class="col-12">
                         <label for="exampleInputPassword1" class="form-label">Active</label>
                         <select class="form-select" name="active">
-                            <?php if($mall['active'] == 0) { ?>
-                            <option value="<?= $mall['active']?>" selected>Tidak Aktif</option>
+                            <?php if($brand['active'] == 0) { ?>
+                            <option value="<?= $brand['active']?>" selected>Tidak Aktif</option>
                             <option value="1"> Aktif</option>
-                            <?php } else if($mall['active'] == 1) { ?>
-                            <option value="<?= $mall['active']?>">Aktif</option>
+                            <?php } else if($brand['active'] == 1) { ?>
+                            <option value="<?= $brand['active']?>">Aktif</option>
                             <option value="0">Tidak Aktif</option>
                             <?php } ?>
                         </select>
