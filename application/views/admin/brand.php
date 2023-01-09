@@ -38,13 +38,13 @@
                             <tr>
                                 <th scope="row" class="py-3 text-center"><?= $i++;?></th>
                                 <td class="py-3"><img class="document-icon"
-                                        src="<?= base_url()?>assets/img/home/history/photo-2.png" alt="" width="64">
+                                        src="<?= base_url()?>upload/brand/<?= $brand['logoBrand']?>" alt="" width="64">
                                 </td>
                                 <td class="py-3"><?= $brand['namaBrand']?></td>
                                 <td class="py-3">
                                     <button data-bs-toggle="modal" data-bs-target="#editData<?= $brand['idBrand']?>"
                                         type="button" class="btn btn-primary me-2">Edit</button>
-                                    <a href="<?= base_url()?>admin/deleteMall/<?= $brand['idBrand']?>" type="button"
+                                    <a href="<?= base_url()?>admin/deleteBrand/<?= $brand['idBrand']?>" type="button"
                                         class="btn btn-outline-danger hapus">Hapus</a>
                                 </td>
                             </tr>
@@ -67,28 +67,20 @@
     <div class="modal-dialog">
         <div class=" modal-content">
             <div class="modal-body">
-                <form action="<?= base_url()?>admin/addMall" method="post">
+                <form action="<?= base_url()?>admin/addBrand" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="active" value="1">
-                    <div class="col-12 mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nama Brand</label>
-                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaBrand">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Logo</label>
+                        <input class="form-control" type="file" name="logoBrand">
                     </div>
                     <div class="col-12">
-                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
-                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall">
+                        <label for="exampleInputPassword1" class="form-label">Nama Brand</label>
+                        <input type="text" class="form-control" placeholder="e.g Starbucks Coffee" name="namaBrand">
                     </div>
-                    <!-- <div class="col-12 mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Active</label>
-                        <select class="form-select" name="active">
-                            <option selected disabled>-- Pilih --</option>
-                            <option value="0">Tidak</option>
-                            <option value="1">Aktif</option>
-                        </select>
-                    </div> -->
             </div>
             <div class="d-grid p-3">
                 <button type="submit" class="btn btn-save btn-transparent mb-2"
-                    style="background-color: #6271EB;color: white;">Tambah Mall</button>
+                    style="background-color: #6271EB;color: white;">Tambah Brand</button>
                 <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
                     style="background-color: #eeeeee;color: grey;">Cancel</button>
             </div>
@@ -105,34 +97,22 @@
     <div class="modal-dialog">
         <div class=" modal-content">
             <div class="modal-body">
-                <form action="<?= base_url()?>admin/editMall" method="post">
+                <form action="<?= base_url()?>admin/editBrand" method="post">
+                    <input type="hidden" name="currentLogo" value="<?= $brand['logoBrand']?>">
                     <input type="hidden" name="idBrand" value="<?= $brand['idBrand']?>">
-                    <div class="col-12 mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nama Mall</label>
-                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaMall"
-                            value="<?= $brand['namaMall']?>">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Upload Thumbnail</label>
+                        <input class="form-control" type="file" name="logoBrand">
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
-                        <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
-                            value="<?= $brand['alamatMall']?>">
-                    </div>
-                    <div class="col-12">
-                        <label for="exampleInputPassword1" class="form-label">Active</label>
-                        <select class="form-select" name="active">
-                            <?php if($brand['active'] == 0) { ?>
-                            <option value="<?= $brand['active']?>" selected>Tidak Aktif</option>
-                            <option value="1"> Aktif</option>
-                            <?php } else if($brand['active'] == 1) { ?>
-                            <option value="<?= $brand['active']?>">Aktif</option>
-                            <option value="0">Tidak Aktif</option>
-                            <?php } ?>
-                        </select>
+                        <label for="exampleInputPassword1" class="form-label">Nama Brand</label>
+                        <input type="text" class="form-control" placeholder="e.g Solo Paragon" name="namaBrand"
+                            value="<?= $brand['namaBrand']?>">
                     </div>
             </div>
             <div class="d-grid p-3">
                 <button type="submit" class="btn btn-save btn-transparent mb-2"
-                    style="background-color: #6271EB;color: white;">Edit Mall</button>
+                    style="background-color: #6271EB;color: white;">Edit Brand</button>
                 <button type="button" class="btn btn-cancel btn-transparent" data-bs-dismiss="modal"
                     style="background-color: #eeeeee;color: grey;">Cancel</button>
             </div>

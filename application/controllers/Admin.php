@@ -16,14 +16,26 @@ class Admin extends CI_Controller {
     
 	public function index()
 	{
-        $data['judul'] = "Tampilan Admin";
+		$data['judul'] = "Brand di beberapa mall";
         $data['active'] = "home";
 		$data['namaUser '] = $this->session->userdata('namaUser');
+		$data['showAllMall'] = $this->Mall_model->showAllMall();
+		$data['showAllBrand'] = $this->Brand_model->showAllBrand();
+		$data['showAllBrandInMall'] = $this->Brand_model->showAllBrandInMall();
+        
 		$this->load->view('templates/headerAdmin', $data);
 		$this->load->view('admin/index', $data);
 		$this->load->view('templates/footerAdmin', $data);
 	}
-    
+
+	public function addBrandInMall()
+	{
+		$this->Brand_model->addBrandInMall();
+		$this->session->set_flashdata('success');
+
+		redirect(base_url('admin'));
+	}
+	
 	public function masterUser()
 	{
         $data['judul'] = "Master User";
@@ -80,7 +92,7 @@ class Admin extends CI_Controller {
 		if($thumbnail == "") {
 
 		} else {
-			$config['upload_path']		= './upload';
+			$config['upload_path']		= './upload/mall';
 			$config['allowed_types']	= 'gif|png|jpg|jpeg';
 
 			$this->load->library('upload',$config);
@@ -103,7 +115,7 @@ class Admin extends CI_Controller {
 			$thumbnail = $this->input->post('currentThumbnail');
 			$this->Mall_model->editMall($this->input->post(), $thumbnail);
 		} else {
-			$config['upload_path']		= './upload';
+			$config['upload_path']		= './upload/mall';
 			$config['allowed_types']	= 'gif|png|jpg|jpeg';
 
 			$this->load->library('upload',$config);
@@ -122,6 +134,13 @@ class Admin extends CI_Controller {
     
     public function deleteMall($idMall)
     {
+        $this->db->select('thumbnail');
+		$query = $this->db->get_where('malls', array('idMall' => $idMall));
+		$thumbnail = $query->row()->thumbnail;
+
+		$path = './upload/mall/'.$thumbnail;
+		chmod($path, 0777);
+		unlink($path);
         $this->db->delete('malls', ['idMall' => $idMall]);
         redirect(base_url('admin/masterMall'));
     }
@@ -143,15 +162,46 @@ class Admin extends CI_Controller {
 	
 	public function addBrand()
 	{
-		$this->Brand_model->addBrand();
-		$this->session->set_flashdata('success');
+		$logoBrand = $_FILES['logoBrand'];
+
+		if($logoBrand == "") {
+
+		} else {
+			$config['upload_path']		= './upload/brand';
+			$config['allowed_types']	= 'gif|png|jpg|jpeg|svg';
+
+			$this->load->library('upload',$config);
+			if (!$this->upload->do_upload('logoBrand')) {
+				echo $this->upload->display_errors(); die();
+			} else {
+				$this->Brand_model->addBrand();
+				$this->session->set_flashdata('success');
+			}
+		}
 
 		redirect(base_url('admin/masterBrand'));
 	}
     
     public function editBrand()
 	{
-		$this->Brand_model->editBrand($this->input->post());
+		$logoBrand = $_FILES['logoBrand'];
+
+		if($logoBrand == "") {
+			$logoBrand = $this->input->post('currentLogo');
+			$this->Brand_model->editBrand($this->input->post(), $logoBrand);
+		} else {
+			$config['upload_path']		= './upload/brand';
+			$config['allowed_types']	= 'gif|png|jpg|jpeg|svg';
+
+			$this->load->library('upload',$config);
+			if (!$this->upload->do_upload('logoBrand')) {
+				echo $this->upload->display_errors(); die();
+			} else {
+				$logoBrand = $this->upload->data('file_name');
+				$this->Brand_model->editBrand($this->input->post(), $logoBrand);
+				$this->session->set_flashdata('success');
+			}
+		}
 		$this->session->set_flashdata('success');
 
 		redirect(base_url('admin/masterBrand'));
@@ -159,7 +209,14 @@ class Admin extends CI_Controller {
     
     public function deleteBrand($idBrand)
     {
-        $this->db->delete('Brand', ['idBrand' => $idBrand]);
+		$this->db->select('logoBrand');
+		$query = $this->db->get_where('brands', array('idBrand' => $idBrand));
+		$namaFileLogo = $query->row()->logoBrand;
+
+		$path = './upload/brand/'.$namaFileLogo;
+		chmod($path, 0777);
+		unlink($path);
+        $this->db->delete('brands', ['idBrand' => $idBrand]);
         redirect(base_url('admin/masterBrand'));
     }
 

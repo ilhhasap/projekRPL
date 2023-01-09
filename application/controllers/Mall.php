@@ -29,7 +29,7 @@ class Mall extends CI_Controller {
         $data['active'] = "mall";
 		
 		$data['namaUser '] = $this->session->userdata('namaUser');
-		$data['showAllMall'] = $this->Mall_model->showAllMall();
+		$data['showBrandInMall'] = $this->Brand_model->showBrandInMall($idMall);
 		$this->load->view('templates/header', $data);
 		$this->load->view('mall/index', $data);
 		$this->load->view('templates/footer', $data);

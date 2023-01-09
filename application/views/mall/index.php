@@ -1,5 +1,5 @@
 <div class="container">
-    <?php foreach($showAllMall as $mall) : ?>
+    <?php foreach($showAllBrandInMall as $mall) : ?>
     <?= $mall['namaMall'];?>
     <?php endforeach; ?>
 </div>

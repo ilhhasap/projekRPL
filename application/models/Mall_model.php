@@ -4,6 +4,10 @@ class Mall_model extends CI_model {
     public function showAllMall() {
         return $this->db->get('malls')->result_array();
     }
+    
+    // public function showMallById($idMall) {
+    //     return $this->db->get_where('malls', ['idMall' => $idMall])->row_array();
+    // }
 
     public function showCountMall() {
         return $this->db->get('malls')->num_rows();

@@ -50,7 +50,7 @@
                             stroke-linejoin="round" />
                     </svg>
 
-                    <span>Overview</span>
+                    <span>Dashboard</span>
                 </a>
 
                 <h5 class="sidebar-title">Master Data</h5>
@@ -90,7 +90,8 @@
                     <span>Malls</span>
                 </a>
 
-                <a href="<?= base_url()?>admin/masterBrand" class="sidebar-item" onclick="toggleActive(this)">
+                <a href="<?= base_url()?>admin/masterBrand"
+                    class="sidebar-item <?= ($active == "brand") ? "active" : " "?>" onclick="toggleActive(this)">
                     <!-- <img src="./assets/img/global/gift.svg" alt=""> -->
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 12V22H4V12" stroke="#ABB3C4" stroke-width="2" stroke-linecap="round"
