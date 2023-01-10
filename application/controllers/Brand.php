@@ -17,7 +17,7 @@ class Brand extends CI_Controller {
         $data['active'] = "brand";
 		
 		$data['namaUser '] = $this->session->userdata('namaUser');
-		$data['showAllBrand'] = $this->Brand_model->showAllBrand();
+		$data['showAllBrandInMall'] = $this->Brand_model->showAllBrandInMall();
 		$this->load->view('templates/header', $data);
 		$this->load->view('brand/index', $data);
 		$this->load->view('templates/footer', $data);

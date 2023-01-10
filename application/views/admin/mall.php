@@ -90,6 +90,11 @@
                         <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
                             autocomplete="off">
                     </div>
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Link Map</label>
+                        <input type="text" class="form-control" name="mapLink" autocomplete="off">
+                        <div id="emailHelp" class="form-text">Berbentuk link!</div>
+                    </div>
                     <div class="row">
                         <div class="col-6">
                             <label for="exampleInputPassword1" class="form-label">Jam Buka</label>
@@ -145,6 +150,12 @@
                         <label for="exampleInputPassword1" class="form-label">Alamat Mall</label>
                         <input type="text" class="form-control" placeholder="e.g Jl Pegangsaan Timur" name="alamatMall"
                             value="<?= $mall['alamatMall']?>" autocomplete="off">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Link Map</label>
+                        <input type="text" class="form-control" name="mapLink" autocomplete="off"
+                            value="<?= $mall['mapLink']?>">
+                        <div id="emailHelp" class="form-text">Berbentuk link!</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-6">

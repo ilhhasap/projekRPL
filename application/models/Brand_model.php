@@ -34,7 +34,7 @@ class Brand_model extends CI_model {
         $this->db->from('brandInMall');
         $this->db->join('malls', 'brandInMall.idMall = malls.idMall');
         $this->db->join('brands', 'brandInMall.idBrand = brands.idBrand');
-        $this->db->where('idMall', $idMall);
+        $this->db->where('brandInMall.idMall', $idMall);
         $query = $this->db->get();
         return $query->result_array();
     }

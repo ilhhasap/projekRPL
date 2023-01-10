@@ -20,6 +20,7 @@ class Mall_model extends CI_model {
             "thumbnail" => $this->upload->data('file_name'),
             "namaMall" => $this->input->post('namaMall',true),
             "alamatMall" => $this->input->post('alamatMall',true),
+            "mapLink" => $this->input->post('mapLink',true),
             "jamBukaMall" => $this->input->post('jamBukaMall',true),
             "jamTutupMall" => $this->input->post('jamTutupMall',true),
             "active" => $this->input->post('active',true),
@@ -28,6 +29,11 @@ class Mall_model extends CI_model {
         $this->db->insert('malls',$data);
 
 	}
+
+    public function showMallById($idMall) {
+        return $this->db->get_where('malls', ['idMall' => $idMall])->row_array();
+        // $data['nama'] = $this->db->get_where('brands', ['id']);
+    }
         
 
     public function editMall($data, $thumbnail)
@@ -37,6 +43,7 @@ class Mall_model extends CI_model {
             "thumbnail" => $thumbnail,
             "namaMall" => $data['namaMall'],
             "alamatMall" => $data['alamatMall'],
+            "mapLink" => $data['mapLink'],
             "jamBukaMall" => $data['jamBukaMall'],
             "jamTutupMall" => $data['jamTutupMall'],
             "active" => $data['active'],

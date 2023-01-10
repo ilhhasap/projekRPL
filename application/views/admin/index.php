@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $mall['namaMall']?></h5>
-                                    <p class="text-secondary"><img class="me-1" width="24"
+                                    <p class="text-secondary text-overflow"><img class="me-1" width="24"
                                             src="<?= base_url()?>/assets/img/global/ic_pin.svg"><?= $mall['alamatMall']?>
                                     </p>
                                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->

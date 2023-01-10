@@ -25,13 +25,15 @@ class Mall extends CI_Controller {
 	
 	public function detail($idMall)
 	{
-        $data['judul'] = "Malls";
-        $data['active'] = "mall";
+		$data['active'] = "home";
 		
 		$data['namaUser '] = $this->session->userdata('namaUser');
+		$data['showMallById'] = $this->Mall_model->showMallById($idMall);
+        $data['judul'] = $data['showMallById']['namaMall'];
+		
 		$data['showBrandInMall'] = $this->Brand_model->showBrandInMall($idMall);
 		$this->load->view('templates/header', $data);
-		$this->load->view('mall/index', $data);
+		$this->load->view('mall/detail', $data);
 		$this->load->view('templates/footer', $data);
 	}
 	

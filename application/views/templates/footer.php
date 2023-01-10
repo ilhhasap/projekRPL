@@ -3,7 +3,7 @@
         <p class="float-end mb-1">
             <a href="#">Back to top</a>
         </p>
-        <p class="mb-1">Footer Copyright</p>
+        <p class="mb-1">Copyright Ilham, Ray, Stefan 2023</p>
     </div>
 </footer>
 
