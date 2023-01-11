@@ -1,12 +1,12 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Lorem ipsum</h1>
-                <p class="lead text-muted">Something short and leading about the collection below—its contents, the
-                    creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
-                    entirely.</p>
+                <h1 class="fw-light fw-bold">Mall dalam satu genggaman!</h1>
+                <p class="lead text-muted">Something special with us.</p>
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Cari Mall</a>
+                    <a href="<?= base_url()?>Mall" class="btn btn-dark my-2 px-4 py-2 fw-bold"
+                        style="border-radius: 200px;font-size: 20px">Cari
+                        Mall</a>
                 </p>
             </div>
         </div>
@@ -14,6 +14,7 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
+            <h2 class="mb-4">Highlight Mall</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <?php foreach($showAllMall as $mall) :?>
                 <div class="col">
@@ -31,7 +32,7 @@
                             <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                             <div class="d-flex">
                                 <a href="<?= base_url()?>mall/detail/<?= $mall['idMall']?>" type="button"
-                                    class="btn btn-dark me-2">Lihat Brand</a>
+                                    class="btn btn-outline-dark me-2 w-100">Lihat Brand</a>
                             </div>
                         </div>
                     </div>

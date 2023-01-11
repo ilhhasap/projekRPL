@@ -12,6 +12,9 @@ class Brand_model extends CI_model {
     public function showCountBrand() {
         return $this->db->get('brands')->num_rows();
     }
+    public function showCountBrandInMall($idMall) {
+        return $this->db->get_where('brandInMall', ['idMall' => $idMall])->num_rows();
+    }
 
     public function showBrandById($idBrand) {
         return $this->db->get_where('brands', ['idBrand' => $idBrand])->row_array();

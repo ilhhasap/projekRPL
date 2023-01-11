@@ -12,6 +12,16 @@ class User_model extends CI_model {
         return $this->db->get_where('user', ['idUser' => $idUser])->row_array();
         // $data['nama'] = $this->db->get_where('user', ['id']);
     }
+
+    public function showWishlistById($idUser) {
+        $this->db->select('*');
+        $this->db->from('wishlist');
+        $this->db->join('malls', 'wishlist.idMall = malls.idMall');
+        $this->db->join('user', 'wishlist.idUser = user.idUser');
+        $this->db->where('wishlist.idUser', $idUser);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
     
     public function registerUser()
     {

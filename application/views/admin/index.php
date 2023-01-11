@@ -40,11 +40,11 @@
                                     </p>
                                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                                     <div class="d-flex">
-                                        <button data-bs-toggle="modal" data-bs-target="#lihatBrand<?= $mall['idMall']?>"
-                                            type="button" class="btn btn-outline-dark me-2">Lihat Brand</button>
+                                        <a href="<?= base_url()?>Admin/detailBrandMall/<?= $mall['idMall']?>"
+                                            type="button" class="btn btn-outline-dark me-2 w-100">Lihat Brand</a>
                                         <button data-bs-toggle="modal"
                                             data-bs-target="#tambahBrand<?= $mall['idMall']?>" type="button"
-                                            class="btn btn-dark"><img
+                                            class="btn btn-dark w-100" style="background-color: #6271EB"><img
                                                 src="http://localhost:8080/dailyPlan//assets/img/global/ic_plus.svg">
                                             Brand</button>
                                     </div>

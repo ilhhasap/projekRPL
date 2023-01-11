@@ -13,6 +13,18 @@ class Mall_model extends CI_model {
         return $this->db->get('malls')->num_rows();
     }
 
+    public function addWishlist()
+    {
+       
+        $data = [
+            "idMall" => $this->input->post('idMall',true),
+            "idUser" => $this->input->post('idUser',true),
+        ];
+
+        $this->db->insert('wishlist',$data);
+
+	}
+    
     public function addMall()
     {
        

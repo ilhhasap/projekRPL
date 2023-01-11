@@ -36,5 +36,19 @@ class Mall extends CI_Controller {
 		$this->load->view('mall/detail', $data);
 		$this->load->view('templates/footer', $data);
 	}
+
+	public function addWishlist()
+	{
+		$this->Mall_model->addWishlist();
+		$this->session->set_flashdata('success');
+
+		redirect(base_url('wishlist'));
+	}
+
+	public function hapusWishlist($idWishlist)
+    {
+        $this->db->delete('wishlist', ['idWishlist' => $idWishlist]);
+        redirect(base_url('wishlist'));
+    }
 	
 }

@@ -43,9 +43,9 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #EAEAEA;">
         <div class="container">
-            <a class="navbar-brand" href="#">SupaMall</a>
+            <a class="navbar-brand fw-bold" href="#">SupaMall</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,12 +62,19 @@
                 </div>
             </div>
             <?php if(!$this->session->userdata('status')) : ?>
-            <a href="<?= base_url()?>auth" class="btn btn-success" type="submit">Login</a>
+            <a href="<?= base_url()?>auth" class="btn btn-dark" style="background-color: #6271EB;"
+                type="submit">Login</a>
             <?php else : ?>
             <div class="dropdown align-items-center text-center">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <?php if($this->session->userdata('role') == 'admin') : ?>
+                    <img src="<?= base_url()?>assets/img/global/crown.svg" alt="mdo" width="32" height="32"
+                        class="rounded-circle">
+                    <?php else: ?>
+                    <img src="<?= base_url()?>assets/img/global/user.svg" alt="mdo" width="32" height="32"
+                        class="rounded-circle">
+                    <?php endif; ?>
                     <span class="fw-bold"><?= $this->session->userdata('namaUser')?></span>
                 </a>
                 <ul class="dropdown-menu text-small mt-2" aria-labelledby="dropdownUser1">

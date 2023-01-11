@@ -28,6 +28,21 @@ class Admin extends CI_Controller {
 		$this->load->view('templates/footerAdmin', $data);
 	}
 
+	public function detailBrandMall($idMall)
+	{
+        $data['active'] = "home";
+		$data['namaUser '] = $this->session->userdata('namaUser');
+		$data['showMallById'] = $this->Mall_model->showMallById($idMall);
+        $data['judul'] = $data['showMallById']['namaMall'];
+		
+		$data['showBrandInMall'] = $this->Brand_model->showBrandInMall($idMall);
+		$data['showCountBrandInMall'] = $this->Brand_model->showCountBrandInMall($idMall);
+        
+		$this->load->view('templates/headerAdmin', $data);
+		$this->load->view('admin/detailBrandMall', $data);
+		$this->load->view('templates/footerAdmin', $data);
+	}
+
 	public function addBrandInMall()
 	{
 		$this->Brand_model->addBrandInMall();
@@ -143,6 +158,12 @@ class Admin extends CI_Controller {
 		unlink($path);
         $this->db->delete('malls', ['idMall' => $idMall]);
         redirect(base_url('admin/masterMall'));
+    }
+
+    public function deleteBrandInMall($idBrandMall)
+    {	
+        $this->db->delete('brandInMall', ['idBrandMall' => $idBrandMall]);
+        redirect(base_url('admin/'));
     }
 
 

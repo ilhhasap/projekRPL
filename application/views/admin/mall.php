@@ -39,7 +39,7 @@
                             <?php $i = 1; foreach ($showAllMall as $mall) : ?>
                             <tr>
                                 <th scope="row" class="py-3 text-center"><?= $i++;?></th>
-                                <td class="py-3"><img class="document-icon"
+                                <td class="py-3"><img class="document-icon rounded-3"
                                         src="<?= base_url()?>upload/mall/<?= $mall['thumbnail']?>" alt="" width="64">
                                 </td>
                                 <td class="py-3"><?= $mall['namaMall']?></td>
@@ -74,8 +74,8 @@
         <div class=" modal-content">
             <div class="modal-body">
                 <form action="<?= base_url()?>admin/addMall" method="post" enctype="multipart/form-data">
-                    <!-- <?= form_open_multipart('admin/addMall'); ?> -->
                     <input type="hidden" name="active" value="1">
+                    <!-- <?= form_open_multipart('admin/addMall'); ?> -->
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Upload Thumbnail</label>
                         <input class="form-control" type="file" name="thumbnail">
