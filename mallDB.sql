@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 10, 2023 at 09:26 AM
+-- Generation Time: Jan 11, 2023 at 05:41 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.28
 
@@ -36,17 +36,6 @@ CREATE TABLE `brandInMall` (
   `jamTutupBrand` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `brandInMall`
---
-
-INSERT INTO `brandInMall` (`idBrandMall`, `idMall`, `idBrand`, `floor`, `jamBukaBrand`, `jamTutupBrand`) VALUES
-(1, 11, 9, '2', '11:00:00', '21:00:00'),
-(2, 11, 7, '2', '11:06:00', '00:06:00'),
-(3, 12, 7, '3', '11:49:00', '00:49:00'),
-(4, 13, 8, '1', '01:09:00', '13:09:00'),
-(5, 11, 10, '3', '10:00:00', '22:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -66,8 +55,7 @@ CREATE TABLE `brands` (
 INSERT INTO `brands` (`idBrand`, `logoBrand`, `namaBrand`) VALUES
 (7, 'starbucks.svg', 'Starbucks Coffee'),
 (8, 'uniqlo-1.svg', 'Uniqlo Indonesia'),
-(9, 'apple-13.svg', 'iBox'),
-(10, 'love.svg', 'pdip');
+(9, 'apple-13.svg', 'iBox');
 
 -- --------------------------------------------------------
 
@@ -91,9 +79,9 @@ CREATE TABLE `malls` (
 --
 
 INSERT INTO `malls` (`idMall`, `thumbnail`, `namaMall`, `alamatMall`, `mapLink`, `jamBukaMall`, `jamTutupMall`, `active`) VALUES
-(11, 'jezael-melgoza-layMbSJ3YOE-unsplash.jpg', 'Solo Paragon', 'Jl. Yosodipuro No.133, Mangkubumen', 'https://goo.gl/maps/LHxi41LkjxM9Fy3H7', '09:00:00', '21:00:00', '1'),
+(11, 'jezael-melgoza-layMbSJ3YOE-unsplash.jpg', 'Solo Paragon', 'Jl. Yosodipuro No.133', 'https://goo.gl/maps/LHxi41LkjxM9Fy3H7', '09:00:00', '21:00:00', '1'),
 (12, 'mostafa-meraji-X0yKdR_F9rM-unsplash.jpg', 'The Park Mall', 'Jl. Ir. Soekarno, Grogol', 'https://goo.gl/maps/e3hpzYiNNrYUnc4p9', '10:00:00', '22:00:00', '1'),
-(13, 'zac-wolff-uuwA21vmI3o-unsplash.jpg', 'Solo Square', 'Jl. Slamet Riyadi No.451-455, Pajang', 'https://goo.gl/maps/wo1VXbHbV4tS1p3C7', '10:00:00', '22:00:00', '1'),
+(13, 'zac-wolff-uuwA21vmI3o-unsplash.jpg', 'Solo Square', 'Jl. Slamet Riyadi No.451-455', 'https://goo.gl/maps/wo1VXbHbV4tS1p3C7', '10:00:00', '22:00:00', '1'),
 (14, 'patrick-tomasso-gMes5dNykus-unsplash.jpg', 'Solo Grand Mall', 'Jl. Slamet Riyadi No.273, Laweyan', 'https://goo.gl/maps/THmA3Y6UYz45FxdR9', '09:10:00', '10:10:00', '1'),
 (15, 'hernan-lucio-gJFvHkUHdSI-unsplash.jpg', 'Pakuwon Mall', 'Jl. Ir. Soekarno, Dusun II, Sukoharjo', 'https://goo.gl/maps/dMHufpZocdjE5ySP9', '08:10:00', '22:10:00', '1');
 
@@ -117,10 +105,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`idUser`, `emailUser`, `password`, `namaUser`, `role`) VALUES
 (1, 'ilhhasap@gmail.com', 'e0923f7790b70e5f80373bb198957b4d', 'ilham tristadika', 'admin'),
-(3, 'ray@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'Ray', 'user'),
-(4, 'stefan@gmail.com', '8dd2cdcec15a6f3a4ef80d18c27ed2c2', 'Stefanus Chandra', 'user'),
-(6, 'cahyadi@gmail.com', '4cb971996c49a3b5a00951f14ad3abc6', 'cahyadi', 'admin'),
-(7, 'prad@gmail.com', 'e4713347e6f0197c63cd9cc81bb61f65', 'prad', 'user');
+(8, 'ray@gmail.com', '50b483d799f6b531772078e9cd0fa509', 'Ray Valentino', 'user');
 
 -- --------------------------------------------------------
 
@@ -129,10 +114,21 @@ INSERT INTO `user` (`idUser`, `emailUser`, `password`, `namaUser`, `role`) VALUE
 --
 
 CREATE TABLE `wishlist` (
-  `idWishlist` varchar(16) NOT NULL,
+  `idWishlist` int(11) NOT NULL,
   `idMall` int(11) NOT NULL,
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`idWishlist`, `idMall`, `idUser`) VALUES
+(2, 0, 0),
+(3, 12, 0),
+(4, 12, 0),
+(11, 12, 0),
+(13, 12, 8);
 
 --
 -- Indexes for dumped tables
@@ -177,7 +173,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `brandInMall`
 --
 ALTER TABLE `brandInMall`
-  MODIFY `idBrandMall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idBrandMall` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -195,7 +191,13 @@ ALTER TABLE `malls`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `idWishlist` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
